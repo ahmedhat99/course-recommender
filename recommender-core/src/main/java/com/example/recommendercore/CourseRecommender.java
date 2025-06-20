@@ -1,4 +1,4 @@
-package com.example.courserecommender;
+package com.example.recommendercore;
 
 import java.util.List;
 

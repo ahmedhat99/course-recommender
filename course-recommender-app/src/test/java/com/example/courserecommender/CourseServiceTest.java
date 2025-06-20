@@ -10,6 +10,8 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.example.recommendercore.Course;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CourseServiceTest {
 
@@ -27,8 +29,8 @@ public class CourseServiceTest {
     void testRecommenderInjected() {
         List<Course> courses = courseService.getRecommendedCourses();
         assertEquals(2, courses.size());
-        assertEquals("primary1", courses.get(0).getTitle());
-        assertEquals("primary2", courses.get(1).getTitle());
+        assertEquals("override1", courses.get(0).getTitle());
+        assertEquals("override2", courses.get(1).getTitle());
     }
 
 }

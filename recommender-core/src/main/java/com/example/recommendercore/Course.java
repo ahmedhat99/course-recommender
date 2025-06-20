@@ -1,4 +1,4 @@
-package com.example.courserecommender;
+package com.example.recommendercore;
 
 public class Course {
     private String title;

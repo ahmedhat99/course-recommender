@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import com.example.recommendercore.Course;
 import com.example.recommendercore.CourseRecommender;
 
-@Component("secondaryRecommender")
-public class SecondaryRecommender implements CourseRecommender {
+@Component("mainRecommender")
+public class OverrideMainRecommender implements CourseRecommender {
     public List<Course> recommendedCourses() {
-        return List.of(new Course("secondary1"), new Course("secondary2"));
+        return List.of(new Course("override1"), new Course("override2"));
     }
 }
