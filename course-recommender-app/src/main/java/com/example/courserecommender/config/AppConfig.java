@@ -1,4 +1,4 @@
-package com.example.courserecommender;
+package com.example.courserecommender.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Primary;
 
+import com.example.courserecommender.recommender.PrimaryRecommender;
 import com.example.recommendercore.CourseRecommender;
 
 @Configuration
