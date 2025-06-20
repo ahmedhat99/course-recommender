@@ -1,39 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.example.courserecommender</groupId>
-  <artifactId>course-recommender-app</artifactId>
-  <packaging>jar</packaging>
+  <groupId>com.example</groupId>
+  <artifactId>course-recommender-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-
-  <name>course-recommender-app</name>
-  <url>http://maven.apache.org</url>
-
+  <packaging>pom</packaging>
+  <name>course-recommender-parent</name>
+  <modules>
+    <module>course-recommender-app</module>
+    <module>recommender-core</module>
+  </modules>
   <dependencies>
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>6.1.6</version>
     </dependency>
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>6.1.6</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <version>5.10.2</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
   <build>
     <plugins>
@@ -48,6 +41,4 @@
       </plugin>
     </plugins>
   </build>
-
-
 </project>
