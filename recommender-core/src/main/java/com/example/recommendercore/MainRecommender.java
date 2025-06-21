@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component("mainRecommender")
 public class MainRecommender implements CourseRecommender {
-        public List<Course> recommendedCourses() {
+        public List<Course> recommendedCourses(List<Course> allCourses) {
         return List.of(new Course("main1"), new Course("main2"));
     }
 }

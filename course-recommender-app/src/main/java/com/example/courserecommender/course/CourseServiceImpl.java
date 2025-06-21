@@ -23,7 +23,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> getRecommendedCourses() {
-        return courseRecommender.recommendedCourses();
+        List<Course> allCourses = courseRepository.findAll();
+        return courseRecommender.recommendedCourses(allCourses);
     }
 
     @Override

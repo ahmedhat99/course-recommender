@@ -5,83 +5,80 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.example.courserecommender.config.AppConfig;
 import com.example.courserecommender.course.CourseService;
 import com.example.recommendercore.Course;
 
+@SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CourseServiceTest {
 
-    private ApplicationContext context;
+    @Autowired
     private CourseService courseService;
 
-    @BeforeAll
-    void setUp() {
-        context = new AnnotationConfigApplicationContext(AppConfig.class);
-        courseService = context.getBean(CourseService.class);
-    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    @AfterEach
-    void tearDown() {
-        JdbcTemplate jdbc = context.getBean(JdbcTemplate.class);
-        jdbc.update("DELETE FROM Course");
+    @BeforeEach
+    void clearBefore() {
+        jdbcTemplate.update("DELETE FROM Course");
     }
 
     @Test
-    void testRecommenderInjected() {
+    void testRecommender() {
+        Course matchingCourse = new Course(1, "Matching", "A course for testing", 4, 1);
+        courseService.addCourse(matchingCourse);
+        Course nonMatchingCourse = new Course(2, "Non-Matching", "A course for testing", 2, 1);
+        courseService.addCourse(nonMatchingCourse);
         List<Course> courses = courseService.getRecommendedCourses();
-        assertEquals(2, courses.size());
-        assertEquals("override1", courses.get(0).getName());
-        assertEquals("override2", courses.get(1).getName());
+        assertEquals(1, courses.size());
+        assertEquals("Matching", courses.get(0).getName());
     }
 
+    @Test
+    void testAddAndViewCourse() {
+        Course newCourse = new Course(1, "Test Course", "A course for testing", 4, 1);
+        courseService.addCourse(newCourse);
+
+        Course course = courseService.viewCourse(1);
+        assertEquals("Test Course", course.getName());
+    }
 
     @Test
-void testAddAndViewCourse() {
-    Course newCourse = new Course(1, "Test Course", "A course for testing", 4, 1);
-    courseService.addCourse(newCourse);
+    void testUpdateCourse() {
+        Course course = new Course(1, "Test Course", "A course for testing", 4, 1);
+        courseService.addCourse(course);
 
-    Course course = courseService.viewCourse(1);
-    assertEquals("Test Course", course.getName()); 
-}
+        Course fetched = courseService.viewCourse(1);
+        assertEquals("Test Course", fetched.getName());
 
-@Test
-void testUpdateCourse() {
-    Course course = new Course(1, "Test Course", "A course for testing", 4, 1);
-    courseService.addCourse(course);
+        Course updated = new Course(1, "Updated Course", "Updated description", 5, 1);
+        courseService.updateCourse(updated);
 
-    Course fetched = courseService.viewCourse(1);
-    assertEquals("Test Course", fetched.getName());
+        Course updatedCourse = courseService.viewCourse(1);
+        assertEquals("Updated Course", updatedCourse.getName());
+        assertEquals("Updated description", updatedCourse.getDescription());
+        assertEquals(5, updatedCourse.getCredit());
+    }
 
-    Course updated = new Course(1, "Updated Course", "Updated description", 5, 1);
-    courseService.updateCourse(updated);
+    @Test
+    void testDeleteCourse() {
+        Course course = new Course(1, "Test Course", "A course for testing", 4, 1);
+        courseService.addCourse(course);
 
-    Course updatedCourse = courseService.viewCourse(1);
-    assertEquals("Updated Course", updatedCourse.getName());
-    assertEquals("Updated description", updatedCourse.getDescription());
-    assertEquals(5, updatedCourse.getCredit());
-}
+        Course fetched = courseService.viewCourse(1);
+        assertEquals("Test Course", fetched.getName());
 
-@Test
-void testDeleteCourse() {
-    Course course = new Course(1, "Test Course", "A course for testing", 4, 1);
-    courseService.addCourse(course);
+        courseService.deleteCourse(1);
 
-    Course fetched = courseService.viewCourse(1);
-    assertEquals("Test Course", fetched.getName());
-
-    courseService.deleteCourse(1);
-
-    Course deleted = courseService.viewCourse(1);
-    assertNull(deleted);
-}
+        Course deleted = courseService.viewCourse(1);
+        assertNull(deleted);
+    }
 
 }

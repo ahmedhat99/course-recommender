@@ -1,0 +1,10 @@
+com\example\courserecommender\course\CourseService.class
+com\example\courserecommender\controller\CourseController.class
+com\example\courserecommender\course\JdbcCourseRepository.class
+com\example\courserecommender\config\AppConfig.class
+com\example\courserecommender\recommender\SecondaryRecommender.class
+com\example\courserecommender\recommender\OverrideMainRecommender.class
+com\example\courserecommender\recommender\PrimaryRecommender.class
+com\example\courserecommender\course\CourseRepository.class
+com\example\courserecommender\course\CourseServiceImpl.class
+com\example\courserecommender\CourseRecommenderApplication.class

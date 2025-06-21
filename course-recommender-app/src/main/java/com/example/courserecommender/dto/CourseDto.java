@@ -1,35 +1,19 @@
-package com.example.recommendercore;
+package com.example.courserecommender.dto;
 
-public class Course {
-
-    private int id;
+public class CourseDto {
     private String name;
     private String description;
     private int credit;
     private int authorId;
 
-    public Course(int id, String name, String description, int credit, int authorId) {
-        this.id = id;
+    public CourseDto() {
+    }
+
+    public CourseDto(String name, String description, int credit, int authorId) {
         this.name = name;
         this.description = description;
         this.credit = credit;
         this.authorId = authorId;
-    }
-
-    public Course(String name) {
-        this.name = name;
-
-    }
-
-    public Course() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
