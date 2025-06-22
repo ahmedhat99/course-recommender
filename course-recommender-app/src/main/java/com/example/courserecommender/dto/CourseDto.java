@@ -4,16 +4,14 @@ public class CourseDto {
     private String name;
     private String description;
     private int credit;
-    private int authorId;
 
     public CourseDto() {
     }
 
-    public CourseDto(String name, String description, int credit, int authorId) {
+    public CourseDto(String name, String description, int credit) {
         this.name = name;
         this.description = description;
         this.credit = credit;
-        this.authorId = authorId;
     }
 
     public String getName() {
@@ -38,13 +36,5 @@ public class CourseDto {
 
     public void setCredit(int credit) {
         this.credit = credit;
-    }
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
     }
 }

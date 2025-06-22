@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.example.courserecommender.course.Course;
 import com.example.courserecommender.course.CourseService;
-import com.example.recommendercore.Course;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,9 +32,9 @@ public class CourseServiceTest {
 
     @Test
     void testRecommender() {
-        Course matchingCourse = new Course(1, "Matching", "A course for testing", 4, 1);
+        Course matchingCourse = new Course("Matching", "A course for testing", 4);
         courseService.addCourse(matchingCourse);
-        Course nonMatchingCourse = new Course(2, "Non-Matching", "A course for testing", 2, 1);
+        Course nonMatchingCourse = new Course("Non-Matching", "A course for testing", 2);
         courseService.addCourse(nonMatchingCourse);
         List<Course> courses = courseService.getRecommendedCourses();
         assertEquals(1, courses.size());
@@ -43,7 +43,7 @@ public class CourseServiceTest {
 
     @Test
     void testAddAndViewCourse() {
-        Course newCourse = new Course(1, "Test Course", "A course for testing", 4, 1);
+        Course newCourse = new Course("Test Course", "A course for testing", 4);
         courseService.addCourse(newCourse);
 
         Course course = courseService.viewCourse(1);
@@ -52,16 +52,17 @@ public class CourseServiceTest {
 
     @Test
     void testUpdateCourse() {
-        Course course = new Course(1, "Test Course", "A course for testing", 4, 1);
-        courseService.addCourse(course);
+        Course course = new Course("Test Course", "A course for testing", 4);
+        Course savedCourse = courseService.addCourse(course);
+        int id = savedCourse.getId();
 
-        Course fetched = courseService.viewCourse(1);
+        Course fetched = courseService.viewCourse(id);
         assertEquals("Test Course", fetched.getName());
 
-        Course updated = new Course(1, "Updated Course", "Updated description", 5, 1);
+        Course updated = new Course(id, "Updated Course", "Updated description", 5);
         courseService.updateCourse(updated);
 
-        Course updatedCourse = courseService.viewCourse(1);
+        Course updatedCourse = courseService.viewCourse(id);
         assertEquals("Updated Course", updatedCourse.getName());
         assertEquals("Updated description", updatedCourse.getDescription());
         assertEquals(5, updatedCourse.getCredit());
@@ -69,15 +70,16 @@ public class CourseServiceTest {
 
     @Test
     void testDeleteCourse() {
-        Course course = new Course(1, "Test Course", "A course for testing", 4, 1);
-        courseService.addCourse(course);
+        Course course = new Course("Test Course", "A course for testing", 4);
+        Course savedCourse = courseService.addCourse(course);
+        int id = savedCourse.getId();
 
-        Course fetched = courseService.viewCourse(1);
+        Course fetched = courseService.viewCourse(id);
         assertEquals("Test Course", fetched.getName());
 
-        courseService.deleteCourse(1);
+        courseService.deleteCourse(id);
 
-        Course deleted = courseService.viewCourse(1);
+        Course deleted = courseService.viewCourse(id);
         assertNull(deleted);
     }
 

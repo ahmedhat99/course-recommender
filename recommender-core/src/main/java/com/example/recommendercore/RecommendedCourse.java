@@ -1,14 +1,16 @@
 package com.example.recommendercore;
 
-public class Course {
-
+public class RecommendedCourse {
     private int id;
     private String name;
     private String description;
     private int credit;
     private int authorId;
 
-    public Course(int id, String name, String description, int credit, int authorId) {
+    public RecommendedCourse() {
+    }
+
+    public RecommendedCourse(int id, String name, String description, int credit, int authorId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -16,12 +18,9 @@ public class Course {
         this.authorId = authorId;
     }
 
-    public Course(String name) {
+    public RecommendedCourse(String name) {
         this.name = name;
 
-    }
-
-    public Course() {
     }
 
     public int getId() {

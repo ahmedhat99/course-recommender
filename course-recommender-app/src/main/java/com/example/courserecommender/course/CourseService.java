@@ -2,17 +2,19 @@ package com.example.courserecommender.course;
 
 import java.util.List;
 
-import com.example.recommendercore.Course;
+import org.springframework.data.domain.Page;
 
 public interface CourseService {
 
     List<Course> getRecommendedCourses();
 
-    void addCourse(Course course);
+    Course addCourse(Course course);
 
-    void updateCourse(Course course);
+    Course updateCourse(Course course);
 
     Course viewCourse(int id);
 
     void deleteCourse(int id);
+
+    Page<Course> findCoursesPaginated(int page, int size);
 }

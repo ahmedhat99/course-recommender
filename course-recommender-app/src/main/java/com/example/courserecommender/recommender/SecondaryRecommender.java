@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.example.recommendercore.Course;
 import com.example.recommendercore.CourseRecommender;
+import com.example.recommendercore.RecommendedCourse;
 
 @Component("secondaryRecommender")
 public class SecondaryRecommender implements CourseRecommender {
-    public List<Course> recommendedCourses(List<Course> allCourses) {
-        return List.of(new Course("secondary1"), new Course("secondary2"));
+    public List<RecommendedCourse> recommendedCourses(List<RecommendedCourse> allCourses) {
+        return List.of(new RecommendedCourse("secondary1"), new RecommendedCourse("secondary2"));
     }
 }

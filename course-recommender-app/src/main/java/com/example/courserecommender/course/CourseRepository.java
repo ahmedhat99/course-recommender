@@ -1,18 +1,9 @@
 package com.example.courserecommender.course;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.example.recommendercore.Course;
+@Repository
+public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-public interface CourseRepository {
-
-    void addCourse(Course course);
-
-    void updateCourse(Course course);
-
-    Course viewCourse(int id);
-
-    void deleteCourse(int id);
-
-    List<Course> findAll();
 }
