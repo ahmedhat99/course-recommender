@@ -10,6 +10,8 @@ import com.example.courserecommender.author.AuthorService;
 import com.example.courserecommender.dto.AuthorDto;
 import com.example.courserecommender.mapper.AuthorMapper;
 
+import jakarta.validation.Valid;
+
 import java.net.URI;
 
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class AuthorController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> addAuthor(@RequestBody AuthorDto dto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Void> addAuthor(@Valid @RequestBody AuthorDto dto, UriComponentsBuilder uriBuilder) {
 
         Author author = authorMapper.toAuthor(dto);
         Author savedAuthor = authorService.addAuthor(author);
@@ -46,7 +48,7 @@ public class AuthorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateAuthor(@PathVariable int id, @RequestBody AuthorDto dto) {
+    public ResponseEntity<Void> updateAuthor(@PathVariable int id,@Valid @RequestBody AuthorDto dto) {
         Author authorToUpdate = authorMapper.toAuthor(id, dto);
         authorService.updateAuthor(authorToUpdate);
         return ResponseEntity.noContent().build();
@@ -55,9 +57,7 @@ public class AuthorController {
     @GetMapping("/{id}")
     public ResponseEntity<Author> viewAuthor(@PathVariable int id) {
         Author author = authorService.viewAuthor(id);
-        return (author != null)
-                ? ResponseEntity.ok(author)
-                : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(author);
     }
 
     @DeleteMapping("/{id}")
@@ -69,8 +69,6 @@ public class AuthorController {
     @GetMapping("/search")
     public ResponseEntity<Author> getAuthorByEmail(@RequestParam String email) {
         Author author = authorService.findByEmail(email);
-        return (author != null)
-                ? ResponseEntity.ok(author)
-                : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(author);
     }
 }

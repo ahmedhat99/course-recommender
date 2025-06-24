@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+course-recommender-app,com.example.courserecommender,CourseRecommenderApplication,5,3,0,0,2,1,1,1,1,1
+course-recommender-app,com.example.courserecommender.controller,AuthorController,0,74,0,0,0,19,0,6,0,6
+course-recommender-app,com.example.courserecommender.controller,CourseController,0,82,0,0,0,21,0,7,0,7
+course-recommender-app,com.example.courserecommender.course,CourseServiceImpl,0,100,0,4,0,21,0,10,0,8
+course-recommender-app,com.example.courserecommender.author,AuthorServiceImpl,0,81,0,4,0,15,0,10,0,8

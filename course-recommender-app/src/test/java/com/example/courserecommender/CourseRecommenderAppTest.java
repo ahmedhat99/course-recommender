@@ -1,7 +1,7 @@
 package com.example.courserecommender;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
@@ -14,10 +14,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.example.courserecommender.course.Course;
 import com.example.courserecommender.course.CourseService;
+import com.example.courserecommender.exception.ResourceNotFoundException;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CourseServiceTest {
+public class CourseRecommenderAppTest {
 
     @Autowired
     private CourseService courseService;
@@ -79,8 +80,7 @@ public class CourseServiceTest {
 
         courseService.deleteCourse(id);
 
-        Course deleted = courseService.viewCourse(id);
-        assertNull(deleted);
+        assertThrows(ResourceNotFoundException.class, () -> courseService.viewCourse(id));
     }
 
 }
