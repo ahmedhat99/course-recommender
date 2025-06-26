@@ -20,6 +20,12 @@
   <url>http://maven.apache.org</url>
 
 
+  <properties>
+    <sonar.coverage.exclusions>
+      **/mapper/**,**/dto/**,**/rating/**,**/assessment/**,**/author/Author.java,**/course/Course.java
+    </sonar.coverage.exclusions>
+  </properties>
+
   <dependencies>
 
     <dependency>
@@ -107,12 +113,9 @@
             </goals>
             <configuration>
               <excludes>
-                <exclude>**/config/**</exclude>
-                <exclude>**/dto/**</exclude>
-                <exclude>**/exception/**</exclude>
                 <exclude>**/mapper/**</exclude>
+                <exclude>**/dto/**</exclude>
                 <exclude>**/rating/**</exclude>
-                <exclude>**/recommender/**</exclude>
                 <exclude>**/assessment/**</exclude>
                 <exclude>com/example/courserecommender/author/Author.class</exclude>
                 <exclude>com/example/courserecommender/course/Course.class</exclude>
@@ -122,7 +125,11 @@
         </executions>
       </plugin>
 
-
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>4.0.0.4121</version>
+      </plugin>
     </plugins>
   </build>
 

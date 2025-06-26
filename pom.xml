@@ -28,7 +28,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  
+
   <build>
     <plugins>
       <plugin>
@@ -50,6 +50,8 @@
           </annotationProcessorPaths>
         </configuration>
       </plugin>
+
+
     </plugins>
   </build>
 

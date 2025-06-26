@@ -5,17 +5,14 @@ public class RecommendedCourse {
     private String name;
     private String description;
     private int credit;
-    private int authorId;
 
     public RecommendedCourse() {
     }
 
-    public RecommendedCourse(int id, String name, String description, int credit, int authorId) {
-        this.id = id;
+    public RecommendedCourse(String name, String description, int credit) {
         this.name = name;
         this.description = description;
         this.credit = credit;
-        this.authorId = authorId;
     }
 
     public RecommendedCourse(String name) {
@@ -55,11 +52,4 @@ public class RecommendedCourse {
         this.credit = credit;
     }
 
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
 }

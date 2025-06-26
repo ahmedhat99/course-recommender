@@ -1,5 +1,7 @@
 com\example\courserecommender\CourseControllerTest.class
-com\example\courserecommender\CourseServiceImplTest.class
-com\example\courserecommender\CourseRecommenderAppTest.class
 com\example\courserecommender\AuthorControllerTest.class
 com\example\courserecommender\AuthorServiceImplTest.class
+com\example\courserecommender\CourseServiceImplTest.class
+com\example\courserecommender\PrimaryRecommenderTest.class
+com\example\courserecommender\SecondaryRecommenderTest.class
+com\example\courserecommender\OverrideMainRecommenderTest.class
