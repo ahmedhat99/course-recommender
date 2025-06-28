@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CourseRecommenderApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">course-recommender-app</a> &gt; <a href="index.source.html" class="el_package">com.example.courserecommender</a> &gt; <span class="el_source">CourseRecommenderApplication.java</span></div><h1>CourseRecommenderApplication.java</h1><pre class="source lang-java linenums">package com.example.courserecommender;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.example.courserecommender.user.AppUser;
+import com.example.courserecommender.user.UserRepository;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { &quot;com.example.recommendercore&quot;,
         &quot;com.example.courserecommender&quot; }, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = com.example.recommendercore.MainRecommender.class))
-<span class="fc" id="L11">public class CourseRecommenderApplication {</span>
+<span class="nc" id="L17">public class CourseRecommenderApplication {</span>
 
     public static void main(String[] args) {
-<span class="nc" id="L14">        SpringApplication.run(CourseRecommenderApplication.class, args);</span>
-<span class="nc" id="L15">    }</span>
+<span class="nc" id="L20">        SpringApplication.run(CourseRecommenderApplication.class, args);</span>
+<span class="nc" id="L21">    }</span>
+
+    @Bean
+    CommandLineRunner initTestUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+<span class="nc" id="L25">        return args -&gt; {</span>
+<span class="nc" id="L26">                AppUser user = new AppUser();</span>
+<span class="nc" id="L27">                user.setUsername(&quot;admin&quot;);</span>
+<span class="nc" id="L28">                user.setPassword(passwordEncoder.encode(&quot;1234&quot;));</span>
+<span class="nc" id="L29">                user.setRole(&quot;ADMIN&quot;);</span>
+<span class="nc" id="L30">                userRepository.save(user);</span>
+<span class="nc" id="L31">        };</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

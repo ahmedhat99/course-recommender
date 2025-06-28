@@ -20,10 +20,10 @@ public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     private CourseMapper courseMapper;
 
-<span class="fc" id="L23">    public CourseServiceImpl(</span>
+    public CourseServiceImpl(
             @Qualifier(&quot;mainRecommender&quot;) CourseRecommender courseRecommender,
             CourseRepository courseRepository,
-            CourseMapper courseMapper) {
+<span class="fc" id="L26">            CourseMapper courseMapper) {</span>
 <span class="fc" id="L27">        this.courseRecommender = courseRecommender;</span>
 <span class="fc" id="L28">        this.courseRepository = courseRepository;</span>
 <span class="fc" id="L29">        this.courseMapper = courseMapper;</span>

@@ -34,55 +34,55 @@ public class CourseController {
     private final CourseService courseService;
     private final CourseMapper courseMapper;
 
-<span class="fc" id="L37">    public CourseController(CourseService courseService, CourseMapper courseMapper) {</span>
-<span class="fc" id="L38">        this.courseService = courseService;</span>
-<span class="fc" id="L39">        this.courseMapper = courseMapper;</span>
-<span class="fc" id="L40">    }</span>
+<span class="nc" id="L37">    public CourseController(CourseService courseService, CourseMapper courseMapper) {</span>
+<span class="nc" id="L38">        this.courseService = courseService;</span>
+<span class="nc" id="L39">        this.courseMapper = courseMapper;</span>
+<span class="nc" id="L40">    }</span>
 
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Course&gt; viewCourse(@PathVariable int id) {
-<span class="fc" id="L44">        Course course = courseService.viewCourse(id);</span>
-<span class="fc" id="L45">        return ResponseEntity.ok(course);</span>
+<span class="nc" id="L44">        Course course = courseService.viewCourse(id);</span>
+<span class="nc" id="L45">        return ResponseEntity.ok(course);</span>
     }
 
     @PostMapping
     public ResponseEntity&lt;Void&gt; addCourse(@Valid @RequestBody CourseDto dto, UriComponentsBuilder uriBuilder) {
 
-<span class="fc" id="L51">        Course course = courseMapper.toCourse(dto);</span>
-<span class="fc" id="L52">        Course savedCourse = courseService.addCourse(course);</span>
+<span class="nc" id="L51">        Course course = courseMapper.toCourse(dto);</span>
+<span class="nc" id="L52">        Course savedCourse = courseService.addCourse(course);</span>
 
-<span class="fc" id="L54">        URI location = uriBuilder.path(&quot;/courses/{id}&quot;)</span>
-<span class="fc" id="L55">                .buildAndExpand(savedCourse.getId())</span>
-<span class="fc" id="L56">                .toUri();</span>
+<span class="nc" id="L54">        URI location = uriBuilder.path(&quot;/courses/{id}&quot;)</span>
+<span class="nc" id="L55">                .buildAndExpand(savedCourse.getId())</span>
+<span class="nc" id="L56">                .toUri();</span>
 
-<span class="fc" id="L58">        return ResponseEntity.created(location).build();</span>
+<span class="nc" id="L58">        return ResponseEntity.created(location).build();</span>
     }
 
     @PutMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; updateCourse(@PathVariable int id, @Valid @RequestBody CourseDto dto) {
-<span class="fc" id="L63">        Course updatedCourse = courseMapper.toCourse(id, dto);</span>
-<span class="fc" id="L64">        courseService.updateCourse(updatedCourse);</span>
-<span class="fc" id="L65">        return ResponseEntity.noContent().build();</span>
+<span class="nc" id="L63">        Course updatedCourse = courseMapper.toCourse(id, dto);</span>
+<span class="nc" id="L64">        courseService.updateCourse(updatedCourse);</span>
+<span class="nc" id="L65">        return ResponseEntity.noContent().build();</span>
     }
 
     @DeleteMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; deleteCourse(@PathVariable int id) {
-<span class="fc" id="L70">        courseService.deleteCourse(id);</span>
-<span class="fc" id="L71">        return ResponseEntity.noContent().build();</span>
+<span class="nc" id="L70">        courseService.deleteCourse(id);</span>
+<span class="nc" id="L71">        return ResponseEntity.noContent().build();</span>
     }
 
     @GetMapping(&quot;/discover&quot;)
     public ResponseEntity&lt;List&lt;Course&gt;&gt; discoverCourses() {
-<span class="fc" id="L76">        List&lt;Course&gt; recommended = courseService.getRecommendedCourses();</span>
-<span class="fc" id="L77">        return ResponseEntity.ok(recommended);</span>
+<span class="nc" id="L76">        List&lt;Course&gt; recommended = courseService.getRecommendedCourses();</span>
+<span class="nc" id="L77">        return ResponseEntity.ok(recommended);</span>
     }
 
     @GetMapping
     public ResponseEntity&lt;Page&lt;Course&gt;&gt; getCourses(
             @RequestParam(defaultValue = &quot;0&quot;) @Min(0) int page,
             @RequestParam(defaultValue = &quot;10&quot;) @Min(1) int size) {
-<span class="fc" id="L84">        Page&lt;Course&gt; coursePage = courseService.findCoursesPaginated(page, size);</span>
-<span class="fc" id="L85">        return ResponseEntity.ok(coursePage);</span>
+<span class="nc" id="L84">        Page&lt;Course&gt; coursePage = courseService.findCoursesPaginated(page, size);</span>
+<span class="nc" id="L85">        return ResponseEntity.ok(coursePage);</span>
     }
 
 }

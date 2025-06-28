@@ -1,3 +1,4 @@
+com\example\courserecommender\security\SecurityConfig.class
 com\example\courserecommender\controller\CourseController.class
 com\example\courserecommender\dto\AuthorDto.class
 com\example\courserecommender\course\Course.class
@@ -11,10 +12,14 @@ com\example\courserecommender\exception\GlobalExceptionHandler.class
 com\example\courserecommender\course\CourseServiceImpl.class
 com\example\courserecommender\CourseRecommenderApplication.class
 com\example\courserecommender\mapper\CourseMapper.class
+com\example\courserecommender\user\AppUser.class
+com\example\courserecommender\security\ValidationReportFilter.class
+com\example\courserecommender\user\UserRepository.class
 com\example\courserecommender\config\AppConfig.class
 com\example\courserecommender\dto\CourseDto.class
 com\example\courserecommender\course\CourseRepository.class
 com\example\courserecommender\author\AuthorServiceImpl.class
+com\example\courserecommender\user\JpaUserDetailsService.class
 com\example\courserecommender\mapper\CourseMapperImpl.class
 com\example\courserecommender\exception\ResourceNotFoundException.class
 com\example\courserecommender\recommender\SecondaryRecommender.class
