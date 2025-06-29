@@ -13,25 +13,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-<span class="nc" id="L16">public class ValidationReportFilter implements Filter {</span>
+<span class="fc" id="L16">public class ValidationReportFilter implements Filter {</span>
 
     @Override
     public void doFilter(ServletRequest request,
             ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
 
-<span class="nc" id="L23">        HttpServletRequest httpRequest = (HttpServletRequest) request;</span>
-<span class="nc" id="L24">        HttpServletResponse httpResponse = (HttpServletResponse) response;</span>
+<span class="fc" id="L23">        HttpServletRequest httpRequest = (HttpServletRequest) request;</span>
+<span class="fc" id="L24">        HttpServletResponse httpResponse = (HttpServletResponse) response;</span>
 
-<span class="nc" id="L26">        String headerValue = httpRequest.getHeader(&quot;x-validation-report&quot;);</span>
+<span class="fc" id="L26">        String headerValue = httpRequest.getHeader(&quot;x-validation-report&quot;);</span>
 
-<span class="nc bnc" id="L28" title="All 4 branches missed.">        if (headerValue == null || (!headerValue.equals(&quot;true&quot;))) {</span>
+<span class="pc bpc" id="L28" title="2 of 4 branches missed.">        if (headerValue == null || (!headerValue.equals(&quot;true&quot;))) {</span>
 <span class="nc" id="L29">            httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);</span>
 <span class="nc" id="L30">            httpResponse.getWriter().write(&quot;invalid x-validation-report header&quot;);</span>
 <span class="nc" id="L31">            return;</span>
         }
 
-<span class="nc" id="L34">        chain.doFilter(request, response);</span>
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L34">        chain.doFilter(request, response);</span>
+<span class="fc" id="L35">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

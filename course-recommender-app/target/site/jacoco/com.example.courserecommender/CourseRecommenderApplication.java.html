@@ -14,7 +14,7 @@ import com.example.courserecommender.user.UserRepository;
 @SpringBootApplication
 @ComponentScan(basePackages = { &quot;com.example.recommendercore&quot;,
         &quot;com.example.courserecommender&quot; }, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = com.example.recommendercore.MainRecommender.class))
-<span class="nc" id="L17">public class CourseRecommenderApplication {</span>
+<span class="fc" id="L17">public class CourseRecommenderApplication {</span>
 
     public static void main(String[] args) {
 <span class="nc" id="L20">        SpringApplication.run(CourseRecommenderApplication.class, args);</span>
@@ -22,13 +22,13 @@ import com.example.courserecommender.user.UserRepository;
 
     @Bean
     CommandLineRunner initTestUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-<span class="nc" id="L25">        return args -&gt; {</span>
-<span class="nc" id="L26">                AppUser user = new AppUser();</span>
-<span class="nc" id="L27">                user.setUsername(&quot;admin&quot;);</span>
-<span class="nc" id="L28">                user.setPassword(passwordEncoder.encode(&quot;1234&quot;));</span>
-<span class="nc" id="L29">                user.setRole(&quot;ADMIN&quot;);</span>
-<span class="nc" id="L30">                userRepository.save(user);</span>
-<span class="nc" id="L31">        };</span>
+<span class="fc" id="L25">        return args -&gt; {</span>
+<span class="fc" id="L26">                AppUser user = new AppUser();</span>
+<span class="fc" id="L27">                user.setUsername(&quot;admin&quot;);</span>
+<span class="fc" id="L28">                user.setPassword(passwordEncoder.encode(&quot;1234&quot;));</span>
+<span class="fc" id="L29">                user.setRole(&quot;ADMIN&quot;);</span>
+<span class="fc" id="L30">                userRepository.save(user);</span>
+<span class="fc" id="L31">        };</span>
     }
 
 }

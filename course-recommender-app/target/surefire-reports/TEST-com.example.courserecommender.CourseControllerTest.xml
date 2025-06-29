@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.courserecommender.OverrideMainRecommenderTest" time="0.011" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.courserecommender.CourseControllerTest" time="0.748" tests="12" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -63,6 +63,36 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testRecommendedCourses_whenCreditAboveThresholdExists_returnsFilteredCourses" classname="com.example.courserecommender.OverrideMainRecommenderTest" time="0.001"/>
-  <testcase name="testRecommendedCourses_whenAllCoursesCreditBelowThreshold_returnsEmptyList" classname="com.example.courserecommender.OverrideMainRecommenderTest" time="0.0"/>
+  <testcase name="testDeleteCourse_whenNotExists_returnsNotFound" classname="com.example.courserecommender.CourseControllerTest" time="0.033">
+    <system-out><![CDATA[2025-06-29T14:10:04.125+03:00  INFO 15376 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.courserecommender.CourseControllerTest]: CourseControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-06-29T14:10:04.142+03:00  INFO 15376 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.courserecommender.CourseRecommenderApplication for test class com.example.courserecommender.CourseControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2025-06-29T14:10:04.173+03:00  INFO 15376 --- [           main] c.e.c.CourseControllerTest               : Starting CourseControllerTest using Java 21.0.7 with PID 15376 (started by azahra in C:\Users\azahra\Documents\Talent Program\Backend\spring task\course-recommender-parent\course-recommender-app)
+2025-06-29T14:10:04.173+03:00  INFO 15376 --- [           main] c.e.c.CourseControllerTest               : No active profile set, falling back to 1 default profile: "default"
+2025-06-29T14:10:04.448+03:00  INFO 15376 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@60b73425, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@33bc7565, org.springframework.security.web.context.SecurityContextHolderFilter@664c47f2, org.springframework.security.web.header.HeaderWriterFilter@7e3f4f0, org.springframework.web.filter.CorsFilter@7bca96d6, org.springframework.security.web.authentication.logout.LogoutFilter@7ec00f98, com.example.courserecommender.security.ValidationReportFilter@676aec4c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1e7544bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e3cea61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@626b8822, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f2e6db7, org.springframework.security.web.access.ExceptionTranslationFilter@697ea6b2, org.springframework.security.web.access.intercept.AuthorizationFilter@5922338f]
+2025-06-29T14:10:04.494+03:00  INFO 15376 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-06-29T14:10:04.494+03:00  INFO 15376 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-06-29T14:10:04.494+03:00  INFO 15376 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2025-06-29T14:10:04.494+03:00  INFO 15376 --- [           main] c.e.c.CourseControllerTest               : Started CourseControllerTest in 0.349 seconds (process running for 6.818)
+]]></system-out>
+  </testcase>
+  <testcase name="testAddCourse_whenInvalid_returnsBadRequest" classname="com.example.courserecommender.CourseControllerTest" time="0.017"/>
+  <testcase name="testUpdateCourse_whenValid_returnsNoContent" classname="com.example.courserecommender.CourseControllerTest" time="0.0"/>
+  <testcase name="testDiscoverCourses_returnsRecommendedCourses" classname="com.example.courserecommender.CourseControllerTest" time="0.022"/>
+  <testcase name="testGetCourses_returnsPagedCourses" classname="com.example.courserecommender.CourseControllerTest" time="0.037"/>
+  <testcase name="testViewCourse_whenNotExists_returnsNotFound" classname="com.example.courserecommender.CourseControllerTest" time="0.005"/>
+  <testcase name="testGetCourses_whenInvalid_returnsBadRequest" classname="com.example.courserecommender.CourseControllerTest" time="0.017"/>
+  <testcase name="testAddCourse_whenValid_returnsCreated" classname="com.example.courserecommender.CourseControllerTest" time="0.019"/>
+  <testcase name="testViewCourse_whenExists_returnsOk" classname="com.example.courserecommender.CourseControllerTest" time="0.009"/>
+  <testcase name="testUpdateCourse_whenInvalid_returnsBadRequest" classname="com.example.courserecommender.CourseControllerTest" time="0.003"/>
+  <testcase name="testDeleteCourse_whenExists_returnsNoContent" classname="com.example.courserecommender.CourseControllerTest" time="0.0"/>
+  <testcase name="testUpdateCourse_whenNotExists_returnsNotFound" classname="com.example.courserecommender.CourseControllerTest" time="0.016"/>
 </testsuite>

@@ -29,47 +29,47 @@ public class AuthorController {
     private final AuthorService authorService;
     private final AuthorMapper authorMapper;
 
-<span class="nc" id="L32">    public AuthorController(AuthorService authorService, AuthorMapper authorMapper) {</span>
-<span class="nc" id="L33">        this.authorService = authorService;</span>
-<span class="nc" id="L34">        this.authorMapper = authorMapper;</span>
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L32">    public AuthorController(AuthorService authorService, AuthorMapper authorMapper) {</span>
+<span class="fc" id="L33">        this.authorService = authorService;</span>
+<span class="fc" id="L34">        this.authorMapper = authorMapper;</span>
+<span class="fc" id="L35">    }</span>
 
     @PostMapping
     public ResponseEntity&lt;Void&gt; addAuthor(@Valid @RequestBody AuthorDto dto, UriComponentsBuilder uriBuilder) {
 
-<span class="nc" id="L40">        Author author = authorMapper.toAuthor(dto);</span>
-<span class="nc" id="L41">        Author savedAuthor = authorService.addAuthor(author);</span>
+<span class="fc" id="L40">        Author author = authorMapper.toAuthor(dto);</span>
+<span class="fc" id="L41">        Author savedAuthor = authorService.addAuthor(author);</span>
 
-<span class="nc" id="L43">        URI location = uriBuilder.path(&quot;/authors/{id}&quot;)</span>
-<span class="nc" id="L44">                .buildAndExpand(savedAuthor.getId())</span>
-<span class="nc" id="L45">                .toUri();</span>
+<span class="fc" id="L43">        URI location = uriBuilder.path(&quot;/authors/{id}&quot;)</span>
+<span class="fc" id="L44">                .buildAndExpand(savedAuthor.getId())</span>
+<span class="fc" id="L45">                .toUri();</span>
 
-<span class="nc" id="L47">        return ResponseEntity.created(location).build();</span>
+<span class="fc" id="L47">        return ResponseEntity.created(location).build();</span>
     }
 
     @PutMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; updateAuthor(@PathVariable int id,@Valid @RequestBody AuthorDto dto) {
-<span class="nc" id="L52">        Author authorToUpdate = authorMapper.toAuthor(id, dto);</span>
-<span class="nc" id="L53">        authorService.updateAuthor(authorToUpdate);</span>
-<span class="nc" id="L54">        return ResponseEntity.noContent().build();</span>
+<span class="fc" id="L52">        Author authorToUpdate = authorMapper.toAuthor(id, dto);</span>
+<span class="fc" id="L53">        authorService.updateAuthor(authorToUpdate);</span>
+<span class="fc" id="L54">        return ResponseEntity.noContent().build();</span>
     }
 
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Author&gt; viewAuthor(@PathVariable int id) {
-<span class="nc" id="L59">        Author author = authorService.viewAuthor(id);</span>
-<span class="nc" id="L60">        return ResponseEntity.ok(author);</span>
+<span class="fc" id="L59">        Author author = authorService.viewAuthor(id);</span>
+<span class="fc" id="L60">        return ResponseEntity.ok(author);</span>
     }
 
     @DeleteMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; deleteAuthor(@PathVariable int id) {
-<span class="nc" id="L65">        authorService.deleteAuthor(id);</span>
-<span class="nc" id="L66">        return ResponseEntity.noContent().build();</span>
+<span class="fc" id="L65">        authorService.deleteAuthor(id);</span>
+<span class="fc" id="L66">        return ResponseEntity.noContent().build();</span>
     }
 
     @GetMapping(&quot;/search&quot;)
     public ResponseEntity&lt;Author&gt; getAuthorByEmail(@RequestParam String email) {
-<span class="nc" id="L71">        Author author = authorService.findByEmail(email);</span>
-<span class="nc" id="L72">        return ResponseEntity.ok(author);</span>
+<span class="fc" id="L71">        Author author = authorService.findByEmail(email);</span>
+<span class="fc" id="L72">        return ResponseEntity.ok(author);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

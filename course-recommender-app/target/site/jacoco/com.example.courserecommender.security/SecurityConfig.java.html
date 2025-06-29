@@ -12,30 +12,30 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
-<span class="nc" id="L15">public class SecurityConfig {</span>
+<span class="fc" id="L15">public class SecurityConfig {</span>
 
     @Autowired
     private ValidationReportFilter validationReportFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-<span class="nc" id="L22">        http</span>
-<span class="nc" id="L23">                .csrf(csrf -&gt; csrf.disable())</span>
-<span class="nc" id="L24">                .authorizeHttpRequests(authorize -&gt; authorize</span>
-<span class="nc" id="L25">                        .requestMatchers(HttpMethod.GET, &quot;/courses/**&quot;).permitAll()</span>
-<span class="nc" id="L26">                        .requestMatchers(HttpMethod.POST, &quot;/courses/**&quot;).hasRole(&quot;ADMIN&quot;)</span>
-<span class="nc" id="L27">                        .requestMatchers(HttpMethod.PUT, &quot;/courses/**&quot;).hasRole(&quot;ADMIN&quot;)</span>
-<span class="nc" id="L28">                        .requestMatchers(HttpMethod.DELETE, &quot;/courses/**&quot;).hasRole(&quot;ADMIN&quot;)</span>
-<span class="nc" id="L29">                        .anyRequest().authenticated())</span>
-<span class="nc" id="L30">                .httpBasic(Customizer.withDefaults())</span>
-<span class="nc" id="L31">                .addFilterBefore(validationReportFilter,BasicAuthenticationFilter.class);</span>
+<span class="fc" id="L22">        http</span>
+<span class="fc" id="L23">                .csrf(csrf -&gt; csrf.disable())</span>
+<span class="fc" id="L24">                .authorizeHttpRequests(authorize -&gt; authorize</span>
+<span class="fc" id="L25">                        .requestMatchers(HttpMethod.GET, &quot;/courses/**&quot;).permitAll()</span>
+<span class="fc" id="L26">                        .requestMatchers(HttpMethod.POST, &quot;/courses/**&quot;).hasRole(&quot;ADMIN&quot;)</span>
+<span class="fc" id="L27">                        .requestMatchers(HttpMethod.PUT, &quot;/courses/**&quot;).hasRole(&quot;ADMIN&quot;)</span>
+<span class="fc" id="L28">                        .requestMatchers(HttpMethod.DELETE, &quot;/courses/**&quot;).hasRole(&quot;ADMIN&quot;)</span>
+<span class="fc" id="L29">                        .anyRequest().authenticated())</span>
+<span class="fc" id="L30">                .httpBasic(Customizer.withDefaults())</span>
+<span class="fc" id="L31">                .addFilterBefore(validationReportFilter,BasicAuthenticationFilter.class);</span>
 
-<span class="nc" id="L33">        return http.build();</span>
+<span class="fc" id="L33">        return http.build();</span>
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-<span class="nc" id="L38">        return new BCryptPasswordEncoder();</span>
+<span class="fc" id="L38">        return new BCryptPasswordEncoder();</span>
     }
 
 }
