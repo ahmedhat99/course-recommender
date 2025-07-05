@@ -1,15 +1,11 @@
 package com.example.courserecommender;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.courserecommender.user.AppUser;
-import com.example.courserecommender.user.UserRepository;
+
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.example.recommendercore",
@@ -20,15 +16,15 @@ public class CourseRecommenderApplication {
         SpringApplication.run(CourseRecommenderApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner initTestUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        return args -> {
-                AppUser user = new AppUser();
-                user.setUsername("admin");
-                user.setPassword(passwordEncoder.encode("1234"));
-                user.setRole("ADMIN");
-                userRepository.save(user);
-        };
-    }
+    // @Bean
+    // CommandLineRunner initTestUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    //     return args -> {
+    //             AppUser user = new AppUser();
+    //             user.setUsername("admin");
+    //             user.setPassword(passwordEncoder.encode("1234"));
+    //             user.setRole("ADMIN");
+    //             userRepository.save(user);
+    //     };
+    // }
 
 }

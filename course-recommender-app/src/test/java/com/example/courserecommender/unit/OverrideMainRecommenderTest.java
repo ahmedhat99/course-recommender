@@ -1,4 +1,4 @@
-package com.example.courserecommender;
+package com.example.courserecommender.unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

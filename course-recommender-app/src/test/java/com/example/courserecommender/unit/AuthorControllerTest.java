@@ -1,4 +1,4 @@
-package com.example.courserecommender;
+package com.example.courserecommender.unit;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
