@@ -1,6 +1,8 @@
 package com.example.courserecommender.course;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -8,25 +10,31 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.courserecommender.author.Author;
+import com.example.courserecommender.author.AuthorRepository;
 import com.example.courserecommender.exception.ResourceNotFoundException;
 import com.example.courserecommender.mapper.CourseMapper;
 import com.example.recommendercore.CourseRecommender;
 import com.example.recommendercore.RecommendedCourse;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CourseServiceImpl implements CourseService {
 
     private final CourseRecommender courseRecommender;
     private final CourseRepository courseRepository;
+    private final AuthorRepository authorRepository;
     private CourseMapper courseMapper;
 
     public CourseServiceImpl(
             @Qualifier("mainRecommender") CourseRecommender courseRecommender,
             CourseRepository courseRepository,
-            CourseMapper courseMapper) {
+            CourseMapper courseMapper, AuthorRepository authorRepository) {
         this.courseRecommender = courseRecommender;
         this.courseRepository = courseRepository;
         this.courseMapper = courseMapper;
+        this.authorRepository = authorRepository;
     }
 
     @Override
@@ -70,4 +78,57 @@ public class CourseServiceImpl implements CourseService {
         Pageable pageable = PageRequest.of(page, size);
         return courseRepository.findAll(pageable);
     }
+
+    @Override
+    public void addAuthorsToCourse(int courseId, List<Integer> authorIds) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Course with ID " + courseId + " not found."));
+
+        List<Author> authors = authorRepository.findAllById(authorIds);
+
+        List<Integer> foundIds = authors.stream()
+                .map(Author::getId)
+                .toList();
+
+        List<Integer> missingIds = authorIds.stream()
+                .filter(id -> !foundIds.contains(id))
+                .toList();
+
+        if (authors.isEmpty()) {
+            throw new ResourceNotFoundException("No authors found for provided IDs");
+        }
+        if (!missingIds.isEmpty()) {
+            throw new ResourceNotFoundException("Authors not found for IDs: " + missingIds);
+        }
+
+        course.getAuthors().addAll(authors);
+        courseRepository.save(course);
+    }
+
+    @Override
+    public void removeAuthorsFromCourse(int courseId, List<Integer> authorIds) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Course with ID " + courseId + " not found."));
+
+        List<Author> authorsToRemove = authorRepository.findAllById(authorIds);
+
+        List<Integer> foundIds = authorsToRemove.stream()
+                .map(Author::getId)
+                .toList();
+
+        List<Integer> missingIds = authorIds.stream()
+                .filter(id -> !foundIds.contains(id))
+                .toList();
+
+        if (authorsToRemove.isEmpty()) {
+            throw new ResourceNotFoundException("No authors found for provided IDs");
+        }
+        if (!missingIds.isEmpty()) {
+            throw new ResourceNotFoundException("Authors not found for IDs: " + missingIds);
+        }
+
+        course.getAuthors().removeAll(authorsToRemove);
+        courseRepository.save(course);
+    }
+
 }

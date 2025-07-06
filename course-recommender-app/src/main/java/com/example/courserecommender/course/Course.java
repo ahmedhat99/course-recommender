@@ -8,6 +8,7 @@ import java.util.Set;
 import com.example.courserecommender.assessment.Assessment;
 import com.example.courserecommender.author.Author;
 import com.example.courserecommender.rating.Rating;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
@@ -25,6 +26,7 @@ public class Course {
 
     @ManyToMany
     @JoinTable(name = "course_author", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @JsonManagedReference
     private Set<Author> authors = new HashSet<>();
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -41,7 +43,7 @@ public class Course {
         this.description = description;
         this.credit = credit;
     }
-    
+
     public Course(int id, String name, String description, int credit) {
         this.name = name;
         this.description = description;

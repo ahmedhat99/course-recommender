@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.example.courserecommender.course.Course;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 
@@ -23,6 +24,7 @@ public class Author {
     private LocalDate birthdate;
 
     @ManyToMany(mappedBy = "authors")
+    @JsonBackReference
     private Set<Course> courses = new HashSet<>();
 
     public Author() {

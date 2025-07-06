@@ -17,4 +17,8 @@ public interface CourseService {
     void deleteCourse(int id);
 
     Page<Course> findCoursesPaginated(int page, int size);
+
+    void addAuthorsToCourse(int courseId, List<Integer> authorIds); 
+    
+    void removeAuthorsFromCourse(int courseId, List<Integer> authorIds);
 }

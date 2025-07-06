@@ -7,6 +7,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.courserecommender.course.Course;
 import com.example.courserecommender.course.CourseService;
+import com.example.courserecommender.dto.AuthorIdsDto;
 import com.example.courserecommender.dto.CourseDto;
 import com.example.courserecommender.mapper.CourseMapper;
 
@@ -83,6 +84,24 @@ public class CourseController {
             @RequestParam(defaultValue = "10") @Min(1) int size) {
         Page<Course> coursePage = courseService.findCoursesPaginated(page, size);
         return ResponseEntity.ok(coursePage);
+    }
+
+    @PostMapping("/{id}/authors")
+    public ResponseEntity<Void> addAuthorsToCourse(
+            @PathVariable int id,
+            @Valid @RequestBody AuthorIdsDto dto) {
+
+        courseService.addAuthorsToCourse(id, dto.getAuthorIds());
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/authors/remove")
+    public ResponseEntity<Void> removeAuthorsFromCourse(
+            @PathVariable int id,
+            @Valid @RequestBody AuthorIdsDto dto) {
+
+        courseService.removeAuthorsFromCourse(id, dto.getAuthorIds());
+        return ResponseEntity.noContent().build();
     }
 
 }
