@@ -8,10 +8,12 @@ import java.util.Set;
 import com.example.courserecommender.assessment.Assessment;
 import com.example.courserecommender.author.Author;
 import com.example.courserecommender.rating.Rating;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "Course")
 public class Course {
@@ -26,7 +28,6 @@ public class Course {
 
     @ManyToMany
     @JoinTable(name = "course_author", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-    @JsonManagedReference
     private Set<Author> authors = new HashSet<>();
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)

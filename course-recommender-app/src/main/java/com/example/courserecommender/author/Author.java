@@ -5,10 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.example.courserecommender.course.Course;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "Author")
 public class Author {
@@ -24,7 +26,6 @@ public class Author {
     private LocalDate birthdate;
 
     @ManyToMany(mappedBy = "authors")
-    @JsonBackReference
     private Set<Course> courses = new HashSet<>();
 
     public Author() {
@@ -35,7 +36,6 @@ public class Author {
         this.email = email;
         this.birthdate = birthdate;
     }
-
 
     public int getId() {
         return id;
