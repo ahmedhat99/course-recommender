@@ -14,8 +14,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private ValidationReportFilter validationReportFilter;
+    // @Autowired
+    // private ValidationReportFilter validationReportFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -27,8 +27,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/courses/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/courses/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
-                .addFilterBefore(validationReportFilter,BasicAuthenticationFilter.class);
+                .httpBasic(Customizer.withDefaults());
+                // .addFilterBefore(validationReportFilter,BasicAuthenticationFilter.class);
 
         return http.build();
     }
