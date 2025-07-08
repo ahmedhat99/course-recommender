@@ -2,7 +2,6 @@ package com.example.courserecommender.security;
 
 import java.io.IOException;
 
-import org.springframework.stereotype.Component;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;

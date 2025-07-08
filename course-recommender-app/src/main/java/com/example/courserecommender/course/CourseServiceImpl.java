@@ -1,9 +1,8 @@
 package com.example.courserecommender.course;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +16,6 @@ import com.example.courserecommender.mapper.CourseMapper;
 import com.example.recommendercore.CourseRecommender;
 import com.example.recommendercore.RecommendedCourse;
 
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -28,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
     private CourseMapper courseMapper;
 
     public CourseServiceImpl(
-            @Qualifier("mainRecommender") CourseRecommender courseRecommender,
+            @Qualifier("MockServerRecommender") CourseRecommender courseRecommender,
             CourseRepository courseRepository,
             CourseMapper courseMapper, AuthorRepository authorRepository) {
         this.courseRecommender = courseRecommender;
@@ -39,10 +37,10 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> getRecommendedCourses() {
-        List<Course> allCourses = courseRepository.findAll();
+        // List<Course> allCourses = courseRepository.findAll();
 
-        List<RecommendedCourse> recommendedInput = courseMapper.toRecommendedCourseList(allCourses);
-        List<RecommendedCourse> recommendedOutput = courseRecommender.recommendedCourses(recommendedInput);
+        // List<RecommendedCourse> recommendedInput = courseMapper.toRecommendedCourseList(allCourses);
+        List<RecommendedCourse> recommendedOutput = courseRecommender.recommendedCourses(Collections.emptyList());
 
         return courseMapper.toCourseList(recommendedOutput);
     }
