@@ -25,6 +25,7 @@ import com.example.courserecommender.course.CourseService;
 import com.example.courserecommender.dto.AuthorDto;
 import com.example.courserecommender.exception.ResourceNotFoundException;
 import com.example.courserecommender.mapper.AuthorMapper;
+import com.example.courserecommender.recommender.MockServerClient;
 import com.example.courserecommender.user.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -60,6 +61,9 @@ class AuthorControllerTest {
 
     @MockBean
     private UserRepository userRepository;
+
+    @MockBean
+    private MockServerClient mockServerClient;
 
     @Test
     @WithMockUser(username = "admin", roles = "ADMIN")

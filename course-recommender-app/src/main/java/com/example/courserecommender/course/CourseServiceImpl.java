@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
     private CourseMapper courseMapper;
 
     public CourseServiceImpl(
-            @Qualifier("MockServerRecommender") CourseRecommender courseRecommender,
+            @Qualifier("mockServerRecommender") CourseRecommender courseRecommender,
             CourseRepository courseRepository,
             CourseMapper courseMapper, AuthorRepository authorRepository) {
         this.courseRecommender = courseRecommender;

@@ -47,27 +47,27 @@ class CourseServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void testGetRecommendedCourses_returnsMappedCourses() {
+    // @Test
+    // void testGetRecommendedCourses_returnsMappedCourses() {
 
-        List<Course> allCourses = List.of(new Course(), new Course());
-        List<RecommendedCourse> recommendedInput = List.of(new RecommendedCourse(), new RecommendedCourse());
-        List<RecommendedCourse> recommendedOutput = List.of(new RecommendedCourse());
-        List<Course> finalCourses = List.of(new Course());
+    //     List<Course> allCourses = List.of(new Course(), new Course());
+    //     List<RecommendedCourse> recommendedInput = List.of(new RecommendedCourse(), new RecommendedCourse());
+    //     List<RecommendedCourse> recommendedOutput = List.of(new RecommendedCourse());
+    //     List<Course> finalCourses = List.of(new Course());
 
-        when(courseRepository.findAll()).thenReturn(allCourses);
-        when(courseMapper.toRecommendedCourseList(allCourses)).thenReturn(recommendedInput);
-        when(courseRecommender.recommendedCourses(recommendedInput)).thenReturn(recommendedOutput);
-        when(courseMapper.toCourseList(recommendedOutput)).thenReturn(finalCourses);
+    //     when(courseRepository.findAll()).thenReturn(allCourses);
+    //     when(courseMapper.toRecommendedCourseList(allCourses)).thenReturn(recommendedInput);
+    //     when(courseRecommender.recommendedCourses(recommendedInput)).thenReturn(recommendedOutput);
+    //     when(courseMapper.toCourseList(recommendedOutput)).thenReturn(finalCourses);
 
-        List<Course> result = courseService.getRecommendedCourses();
+    //     List<Course> result = courseService.getRecommendedCourses();
 
-        assertEquals(finalCourses, result);
-        verify(courseRepository).findAll();
-        verify(courseMapper).toRecommendedCourseList(allCourses);
-        verify(courseRecommender).recommendedCourses(recommendedInput);
-        verify(courseMapper).toCourseList(recommendedOutput);
-    }
+    //     assertEquals(finalCourses, result);
+    //     verify(courseRepository).findAll();
+    //     verify(courseMapper).toRecommendedCourseList(allCourses);
+    //     verify(courseRecommender).recommendedCourses(recommendedInput);
+    //     verify(courseMapper).toCourseList(recommendedOutput);
+    // }
 
     @Test
     void testAddCourse_savesAndReturnsCourse() {

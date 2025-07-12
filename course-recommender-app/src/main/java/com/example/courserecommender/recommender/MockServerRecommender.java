@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.example.recommendercore.CourseRecommender;
 import com.example.recommendercore.RecommendedCourse;
 
-@Component("MockServerRecommender")
+@Component("mockServerRecommender")
 public class MockServerRecommender implements CourseRecommender {
 
     private final MockServerClient mockServerClient;

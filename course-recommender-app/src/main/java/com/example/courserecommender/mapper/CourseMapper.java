@@ -8,6 +8,7 @@ import org.mapstruct.factory.Mappers;
 
 import com.example.courserecommender.course.Course;
 import com.example.courserecommender.dto.CourseDto;
+import com.example.generated.RecommendedCourseType;
 import com.example.recommendercore.RecommendedCourse;
 
 @Mapper(componentModel = "spring")
@@ -27,4 +28,8 @@ public interface CourseMapper {
     Course toCourse(int id, CourseDto dto);
 
     Course toCourse(CourseDto dto);
+
+    RecommendedCourse fromGenerated(RecommendedCourseType source);
+
+    List<RecommendedCourse> fromGeneratedList(List<RecommendedCourseType> list);
 }

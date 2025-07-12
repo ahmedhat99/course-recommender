@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://recommender.com/recommendations"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    targetNamespace="http://recommender.com/recommendations"
+    name="RecommendedCoursesService">
+
+    <types>
+        <xs:schema>
+            <xs:import namespace="http://recommender.com/recommendations"
+                schemaLocation="../xsd/recommended-course.xsd" />
+        </xs:schema>
+    </types>
+
+    <message name="GetRecommendedCoursesRequest">
+        <part name="parameters" element="tns:getRecommendedCourses" />
+    </message>
+    <message name="GetRecommendedCoursesResponse">
+        <part name="parameters" element="tns:recommendedCourses" />
+    </message>
+
+    <portType name="RecommendedCoursesPortType">
+        <operation name="getRecommendedCourses">
+            <input message="tns:GetRecommendedCoursesRequest" />
+            <output message="tns:GetRecommendedCoursesResponse" />
+        </operation>
+    </portType>
+
+    <binding name="RecommendedCoursesBinding" type="tns:RecommendedCoursesPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+        <operation name="getRecommendedCourses">
+            <soap:operation soapAction="getRecommendedCourses" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+    </binding>
+
+    <service name="RecommendedCoursesService">
+        <port name="RecommendedCoursesPort" binding="tns:RecommendedCoursesBinding">
+            <soap:address location="http://localhost:8088/mockRecommendedCoursesService" />
+        </port>
+    </service>
+</definitions>
